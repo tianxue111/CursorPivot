@@ -14,11 +14,6 @@ namespace winrt::CursorPivot::implementation
 
 		void myButton_Click(IInspectable const& sender, Microsoft::UI::Xaml::RoutedEventArgs const& args);
 
-	private:
-		winrt::AppWindow GetAppWindowForCurrentWindow();
-
-		winrt::AppWindow m_mainAppWindow{ nullptr };
-
 	};
 }
 

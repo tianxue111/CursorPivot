@@ -1,0 +1,9 @@
+namespace CursorPivot
+{
+    [default_interface]
+    runtimeclass HoverWindow : Microsoft.UI.Xaml.Window
+    {
+        HoverWindow();
+        Int32 MyProperty;
+    }
+}

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "App.xaml.h"
 #include "MainWindow.xaml.h"
+#include "HoverWindow.xaml.h"
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
@@ -37,7 +38,8 @@ namespace winrt::CursorPivot::implementation
     /// <param name="e">Details about the launch request and process.</param>
     void App::OnLaunched([[maybe_unused]] LaunchActivatedEventArgs const& e)
     {
-        window = make<MainWindow>();
+        //window = make<MainWindow>();
+        window = make<HoverWindow>();
         window.Activate();
     }
 }
