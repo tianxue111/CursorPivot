@@ -1,0 +1,15 @@
+﻿<Window x:Class="CursorPivot_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CursorPivot_WPF"
+        mc:Ignorable="d"
+        Title="鼠标悬浮球-设置" Height="450" Width="800">
+    <Grid>
+      <Label x:Name="MouseStateLabel" Width="700" Height="40" HorizontalAlignment="Center"/>
+      <Label x:Name="MouseStateLabel2" Width="700" Height="40" HorizontalAlignment="Center" Margin="0,242,0,153"/>
+      <Button x:Name="buttonUp" Width="160" Height="60" Content="启动悬浮窗（测试）" Margin="320,90,320,290"
+              Click="ButtonUp_Click"/>
+    </Grid>
+</Window>
