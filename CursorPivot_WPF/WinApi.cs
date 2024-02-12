@@ -25,5 +25,17 @@ namespace CursorPivot_WPF
             public int X;
             public int Y;
         }
+
+
+        // Win 32 Window, 这两个函数用于获取和设置窗口的扩展样式。
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll")]
+        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        public const int GWL_EXSTYLE = -20;
+        public const int WS_EX_TOOLWINDOW = 0x00000080;
+
     }
 }

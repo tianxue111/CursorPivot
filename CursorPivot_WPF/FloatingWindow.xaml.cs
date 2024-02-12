@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -32,6 +33,8 @@ namespace CursorPivot_WPF
         public FloatingWindow()
         {
             InitializeComponent();
+            //通过将窗口的扩展样式设置为包含WS_EX_TOOLWINDOW（工具窗口），窗口将不会出现在Alt+Tab的切换列表和Win+Tab的任务视图中。
+            this.SourceInitialized += MainWindow_SourceInitialized;
 
             // 获取当前窗口的DPI信息
             //this.Activate();
@@ -124,6 +127,13 @@ namespace CursorPivot_WPF
             {
                 Console.WriteLine($"Action {index} for {buttonName} is not defined.");
             }
+        }
+
+        private void MainWindow_SourceInitialized(object sender, EventArgs e)
+        {
+            IntPtr hwnd = new WindowInteropHelper(this).Handle;
+            int extendedStyle = WinApi.GetWindowLong(hwnd, WinApi.GWL_EXSTYLE);
+            WinApi.SetWindowLong(hwnd, WinApi.GWL_EXSTYLE, extendedStyle | WinApi.WS_EX_TOOLWINDOW);
         }
 
         // 调整悬浮窗位置，考虑DPI缩放
