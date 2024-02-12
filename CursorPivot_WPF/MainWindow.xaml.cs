@@ -26,6 +26,8 @@ namespace CursorPivot_WPF
         {
             InitializeComponent();
             this.Visibility = Visibility.Hidden;
+            this.WindowState = WindowState.Minimized;
+
 
             mouseHook = new MouseHook();
             mouseHook.InitHook();

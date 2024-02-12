@@ -34,6 +34,7 @@ namespace CursorPivot_WPF
             InitializeComponent();
 
             // 获取当前窗口的DPI信息
+            //this.Activate();
             this.Show();    // TODO: 为什么先显示才能获取dpi,待研究
             dpi = GetDpi(this);
             this.Visibility = Visibility.Hidden;
@@ -46,12 +47,14 @@ namespace CursorPivot_WPF
             //MyActions[1] = Button1Action;
             //MyActions[2] = Button2Action;
             MyActions[3] = Simulate_NextDesktop;
+            MyActions[3] = Simulate_NextWindow;
             //MyActions[4] = Button4Action;
             //MyActions[5] = Button5Action;
             MyActions[6] = Simulate_MinimizeAll;
             //MyActions[7] = Button7Action;
             //MyActions[8] = Button8Action;
             MyActions[9] = Simulate_LastDesktop;
+            MyActions[9] = Simulate_LastWindow;
             //MyActions[10] = Button10Action;
             //MyActions[11] = Button11Action;
             MyActions[12] = Simulate_Tasks;
