@@ -19,7 +19,7 @@ namespace CursorPivot_WPF
         {
             MouseHookProcedure = new MouseProc(onMouseProc);
 
-            // 设置钩子
+            // 设置全局钩子
             return WinApi.SetWindowsHookEx(WH_MOUSE_LL, MouseHookProcedure, IntPtr.Zero, 0);
         }
 

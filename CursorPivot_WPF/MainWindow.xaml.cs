@@ -62,11 +62,6 @@ namespace CursorPivot_WPF
             this.MouseStateLabel2.Content = value;
         }
 
-        private void ButtonUp_DragOver(object sender, DragEventArgs e)
-        {
-            MessageBox.Show("drag\n!");
-        }
-
         private void ButtonUp_Click(object sender, RoutedEventArgs e)
         {
             //floatingWindow.Show();

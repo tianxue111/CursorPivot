@@ -16,7 +16,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WindowsInput;
 using WindowsInput.Native;
-using static CursorPivot_WPF.MouseHook;
 
 namespace CursorPivot_WPF
 {
@@ -46,7 +45,10 @@ namespace CursorPivot_WPF
             this.WindowStyle = WindowStyle.None;
 
             // 初始化代理数组
-            MyActions[0] = null;
+            MyActions[0] = ()=> {
+                //MouseKeyboardSimulator.inputSimulator.Mouse.XButtonClick(1);//1 back,2 forward
+                MouseKeyboardSimulator.SimulateMiddleClick();
+                return; };
             //MyActions[1] = Button1Action;
             //MyActions[2] = Button2Action;
             MyActions[3] = Simulate_NextDesktop;
