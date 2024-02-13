@@ -14,8 +14,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WindowsInput;
-using WindowsInput.Native;
+using InputSimulatorStandard;
 
 namespace CursorPivot_WPF
 {
@@ -46,63 +45,26 @@ namespace CursorPivot_WPF
 
             // 初始化代理数组
             MyActions[0] = ()=> {
-                //MouseKeyboardSimulator.inputSimulator.Mouse.XButtonClick(1);//1 back,2 forward
                 MouseKeyboardSimulator.SimulateMiddleClick();
                 return; };
             //MyActions[1] = Button1Action;
             //MyActions[2] = Button2Action;
-            MyActions[3] = Simulate_NextDesktop;
-            MyActions[3] = Simulate_NextWindow;
+            MyActions[3] = MouseKeyboardSimulator.Simulate_NextDesktop;
+            MyActions[3] = MouseKeyboardSimulator.Simulate_NextWindow;
             //MyActions[4] = Button4Action;
             //MyActions[5] = Button5Action;
-            MyActions[6] = Simulate_MinimizeAll;
+            MyActions[6] = MouseKeyboardSimulator.Simulate_MinimizeAll;
             //MyActions[7] = Button7Action;
             //MyActions[8] = Button8Action;
-            MyActions[9] = Simulate_LastDesktop;
-            MyActions[9] = Simulate_LastWindow;
+            MyActions[9] = MouseKeyboardSimulator.Simulate_LastDesktop;
+            MyActions[9] = MouseKeyboardSimulator.Simulate_LastWindow;
             //MyActions[10] = Button10Action;
             //MyActions[11] = Button11Action;
-            MyActions[12] = Simulate_Tasks;
+            MyActions[12] = MouseKeyboardSimulator.Simulate_Tasks;
 
         }
 
-        private void Simulate_LastDesktop()
-        {
-            MouseKeyboardSimulator.SimulateShortcut(VirtualKeyCode.CONTROL, VirtualKeyCode.LWIN, VirtualKeyCode.LEFT);
-        }
-        private void Simulate_NextDesktop()
-        {
-            MouseKeyboardSimulator.SimulateShortcut(VirtualKeyCode.CONTROL, VirtualKeyCode.LWIN, VirtualKeyCode.RIGHT);
-        }
-
-        private void Simulate_LastWindow()
-        {
-            MouseKeyboardSimulator.SimulateShortcut(VirtualKeyCode.MENU, VirtualKeyCode.SHIFT, VirtualKeyCode.TAB);
-            //switcher.SwitchToPreviousWindow();
-        }
-
-        private void Simulate_NextWindow()
-        {
-            MouseKeyboardSimulator.SimulateShortcut(VirtualKeyCode.MENU, VirtualKeyCode.TAB);
-            //switcher.SwitchToNextWindow();
-        }
-
-        private void Simulate_MinimizeAll()
-        {
-            MouseKeyboardSimulator.SimulateShortcut(VirtualKeyCode.LWIN, VirtualKeyCode.VK_M);
-            //MouseKeyboardSimulator.test();
-
-        }
-
-        private void Simulate_Maximize()
-        {
-            MouseKeyboardSimulator.SimulateShortcut(VirtualKeyCode.LWIN, VirtualKeyCode.UP);
-        }
-
-        private void Simulate_Tasks()
-        {
-            MouseKeyboardSimulator.SimulateShortcut(VirtualKeyCode.LWIN, VirtualKeyCode.TAB);
-        }
+        
 
         internal void PerformButtonAction(string buttonName)
         {

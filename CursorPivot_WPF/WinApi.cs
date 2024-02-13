@@ -26,8 +26,8 @@ namespace CursorPivot_WPF
             public int Y;
         }
 
-        [DllImport("user32.dll")]
-        public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, UIntPtr dwExtraInfo);
+        //[DllImport("user32.dll")]
+        //public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint dwData, UIntPtr dwExtraInfo);
 
 
         // Win 32 Window, 这两个函数用于获取和设置窗口的扩展样式。

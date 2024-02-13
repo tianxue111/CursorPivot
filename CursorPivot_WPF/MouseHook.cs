@@ -8,7 +8,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
-using WindowsInput;
 using static CursorPivot_WPF.WinApi;
 
 namespace CursorPivot_WPF
@@ -25,8 +24,6 @@ namespace CursorPivot_WPF
         private POINT mouseDownPosition;
         private const int DragThreshold = 10; // 定义拖动的阈值，超过该值认为是拖动
         private bool ignoreNextEvent = false;   // 处理事件的标志位
-
-        public InputSimulator inputSimulator = new InputSimulator();
 
         public delegate void Dele2Main(string value1);
         public event Dele2Main SetLabel,SetLabel2;
