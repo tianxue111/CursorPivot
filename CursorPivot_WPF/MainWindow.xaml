@@ -6,10 +6,35 @@
         xmlns:local="clr-namespace:CursorPivot_WPF"
         mc:Ignorable="d"
         Title="鼠标悬浮球-设置" Height="450" Width="800">
-    <Grid>
-      <Label x:Name="MouseStateLabel" Width="700" Height="40" HorizontalAlignment="Center"/>
-      <Label x:Name="MouseStateLabel2" Width="700" Height="40" HorizontalAlignment="Center" Margin="0,242,0,153"/>
-      <Button x:Name="buttonUp" Width="160" Height="60" Content="启动悬浮窗（测试）" Margin="320,90,320,290"
-              Click="ButtonUp_Click"/>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Top Button Action:" Grid.Row="0" VerticalAlignment="Center"/>
+        <ComboBox x:Name="TopButtonAction" Grid.Row="0" Margin="150,0,0,0">
+            <!-- Populate with actions -->
+        </ComboBox>
+
+        <TextBlock Text="Bottom Button Action:" Grid.Row="1" VerticalAlignment="Center"/>
+        <ComboBox x:Name="BottomButtonAction" Grid.Row="1" Margin="150,0,0,0">
+            <!-- Populate with actions -->
+        </ComboBox>
+
+        <TextBlock Text="Left Button Action:" Grid.Row="2" VerticalAlignment="Center"/>
+        <ComboBox x:Name="LeftButtonAction" Grid.Row="2" Margin="150,0,0,0">
+            <!-- Populate with actions -->
+        </ComboBox>
+
+        <TextBlock Text="Right Button Action:" Grid.Row="3" VerticalAlignment="Center"/>
+        <ComboBox x:Name="RightButtonAction" Grid.Row="3" Margin="150,0,0,0">
+            <!-- Populate with actions -->
+        </ComboBox>
+
+        <Button Content="Save" Grid.Row="4" HorizontalAlignment="Right" Click="SaveButton_Click"/>
     </Grid>
 </Window>

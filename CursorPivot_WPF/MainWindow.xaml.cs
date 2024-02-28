@@ -32,8 +32,6 @@ namespace CursorPivot_WPF
             mouseHook = new MouseHook();
             mouseHook.InitHook();
             mouseHook.FormStartHook();
-            mouseHook.SetLabel += SetMouseStateLabel;
-            mouseHook.SetLabel2 += SetMouseStateLabel2;
 
         }
 
@@ -52,17 +50,7 @@ namespace CursorPivot_WPF
             mouseHook.FormStopHook();
         }
 
-        public void SetMouseStateLabel(string value)
-        {
-            //this.MouseStateLabel.Content = mouseHook.mouseState.ToString();
-            this.MouseStateLabel.Content = value;
-        }
-        public void SetMouseStateLabel2(string value)
-        {
-            this.MouseStateLabel2.Content = value;
-        }
-
-        private void ButtonUp_Click(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             //floatingWindow.Show();
 

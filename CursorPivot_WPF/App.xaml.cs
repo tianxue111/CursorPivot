@@ -17,7 +17,7 @@ namespace CursorPivot_WPF
     public partial class App : Application
     {
         private NotifyIcon notifyIcon;
-
+        public static MainWindow mainWindow { get; private set; }
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -33,7 +33,8 @@ namespace CursorPivot_WPF
             notifyIcon.ContextMenuStrip = new ContextMenuStrip();
             notifyIcon.ContextMenuStrip.Items.Add("Exit", null, Exit_Click);
 
-
+            mainWindow = new MainWindow();
+            mainWindow.Show();
         }
 
         private void Switch_MainWindow(object sender, EventArgs e)

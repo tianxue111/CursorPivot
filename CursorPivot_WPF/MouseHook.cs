@@ -26,7 +26,6 @@ namespace CursorPivot_WPF
         private bool ignoreNextEvent = false;   // 处理事件的标志位
 
         public delegate void Dele2Main(string value1);
-        public event Dele2Main SetLabel,SetLabel2;
 
 
         public void InitHook()
@@ -74,7 +73,7 @@ namespace CursorPivot_WPF
                 case MouseMessage.WM_MBUTTONDOWN:
                     mouseDown = true;
                     mouseDownPosition = pt;
-                    SetLabel($"Middle Down: {pt.X},{pt.Y}");
+                    Console.WriteLine($"Middle Down: {pt.X},{pt.Y}");
                     //Application.Current.MainWindow.Show();
                     //Application.Current.MainWindow.Activate();
 
@@ -113,7 +112,7 @@ namespace CursorPivot_WPF
                     Point screenPoint = new Point(pt.X, pt.Y);
                     // 将屏幕坐标转换为相对于悬浮窗的坐标
                     Point relativePoint = fwindow.PointFromScreen(screenPoint);
-                    //SetLabel2(relativePoint.X + ", " + relativePoint.Y);
+                    //Console.WriteLine(relativePoint.X + ", " + relativePoint.Y);
 
                     // 使用relativePoint进行命中测试
                     var hitTestResult = VisualTreeHelper.HitTest(fwindow, relativePoint);
@@ -131,7 +130,7 @@ namespace CursorPivot_WPF
                         {
                             //ActionButton = "Button0";
                         }
-                        SetLabel2(ActionButton);
+                        Console.WriteLine(ActionButton);
 
                     }
 

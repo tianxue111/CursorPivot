@@ -60,11 +60,25 @@ namespace CursorPivot_WPF
             MyActions[9] = MouseKeyboardSimulator.Simulate_LastWindow;
             //MyActions[10] = Button10Action;
             //MyActions[11] = Button11Action;
-            MyActions[12] = MouseKeyboardSimulator.Simulate_Tasks;
+            //MyActions[12] = MouseKeyboardSimulator.Simulate_Tasks;
+            MyActions[12] = Show_Settings;
 
         }
 
-        
+        public static void Show_Settings()
+        {
+
+            if (App.mainWindow != null)
+            {
+                // Use the Dispatcher to invoke the UI update on the UI thread
+                App.mainWindow.Dispatcher.Invoke(() =>
+                {
+                    // Here can safely access UI elements
+                    App.mainWindow.Show(); 
+                });
+            }
+        }
+
 
         internal void PerformButtonAction(string buttonName)
         {
