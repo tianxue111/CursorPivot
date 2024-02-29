@@ -6,35 +6,126 @@
         xmlns:local="clr-namespace:CursorPivot_WPF"
         mc:Ignorable="d"
         Title="鼠标悬浮球-设置" Height="450" Width="800">
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
 
-        <TextBlock Text="Top Button Action:" Grid.Row="0" VerticalAlignment="Center"/>
-        <ComboBox x:Name="TopButtonAction" Grid.Row="0" Margin="150,0,0,0">
-            <!-- Populate with actions -->
+
+    <Window.Resources>
+        <Style x:Key="CircularButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Ellipse Fill="{TemplateBinding Background}" Stroke="Black" Opacity="0.75"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="FanShapeButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Path Fill="{TemplateBinding Background}" Stroke="Black" Opacity="0.75"
+                                  Data="M0,0 A100,100 0 0 1 100,100 L50,100 A50,50 0 0 0 0,50 Z" Margin="0"  />
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="DarkGray" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <!--<Canvas HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Ellipse Width="200" Height="200" Fill="Gray" Canvas.Left="-80"/>
+            <Ellipse Width="100" Height="100" Fill="White" Canvas.Left="-30" Canvas.Top="51"/>
+            <Button Width="50" Height="50" Canvas.Left="-5" Canvas.Top="1" Content="Top" Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button Width="50" Height="50" Canvas.Left="-5" Canvas.Top="156" Content="Bottom" Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button Width="50" Height="50" Canvas.Left="-80" Canvas.Top="81" Content="Left" Click="Button_Click"/>
+            <Button Width="50" Height="50" Canvas.Left="70" Canvas.Top="81" Content="Right" Click="Button_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </Canvas>-->
+
+        <Grid>
+
+            <Ellipse Width="210" Height="210" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="./Images/background.jpg"/>
+                </Ellipse.Fill>
+
+            </Ellipse>
+
+            <Button x:Name="Button12"  HorizontalAlignment="Left" Click="Button_Click" VerticalAlignment="Top" Margin="328,132,0,0"
+                Style="{DynamicResource FanShapeButtonStyle}">
+                <Button.RenderTransform>
+                    <RotateTransform Angle="-45" CenterX="0" CenterY="0"/>
+                </Button.RenderTransform>
+            </Button>
+
+
+            <Button x:Name="Button6" HorizontalAlignment="Left" Click="Button_Click" VerticalAlignment="Top" Margin="231,196,0,0"
+                Style="{DynamicResource FanShapeButtonStyle}">
+                <Button.RenderTransform>
+                    <RotateTransform Angle="135" CenterX="100" CenterY="100"/>
+                </Button.RenderTransform>
+            </Button>
+
+
+            <Button x:Name="Button3" HorizontalAlignment="Left" Click="Button_Click" VerticalAlignment="Top" Margin="379,189,0,0"
+                Style="{DynamicResource FanShapeButtonStyle}">
+                <Button.RenderTransform>
+                    <RotateTransform Angle="45" CenterX="100" CenterY="100"/>
+                </Button.RenderTransform>
+            </Button>
+
+
+            <Button x:Name="Button9"  HorizontalAlignment="Left" Click="Button_Click" VerticalAlignment="Top" Margin="218,43,0,0"
+                Style="{DynamicResource FanShapeButtonStyle}">
+                <Button.RenderTransform>
+                    <RotateTransform Angle="-135" CenterX="100" CenterY="100"/>
+                </Button.RenderTransform>
+            </Button>
+
+            <Button x:Name="Button0" Width="84" Height="84"
+        HorizontalAlignment="Center" VerticalAlignment="Center"
+        Margin="0,0,0,0" Content=""
+        Style="{DynamicResource CircularButtonStyle}"/>
+
+            <Path Fill="Black" Data="M0,30 L15,18 L30,30 L15,25 Z" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,110,0,0"/>
+
+            <Path Fill="Black" Data="M0,0 L15,12 L30,0 L15,5 Z" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="390,293,0,0"/>
+
+            <Path Fill="Black" Data="M0,0 L12,15 L0,30 L5,15 Z" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="477,0,0,0"/>
+
+            <Path Fill="Black" Data="M30,0 L18,15 L30,30 L25,15 Z" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="295,0,0,0"/>
+
+            <!--<Ellipse Fill="#88FFFFFF" Stroke="Black" Width="84" Height="83" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>-->
+        </Grid>
+
+
+        <ComboBox x:Name="ActionSelector" HorizontalAlignment="Right" VerticalAlignment="Top" Width="120" Margin="10"
+                  SelectionChanged="ActionSelector_SelectionChanged">
+            <ComboBoxItem Content="NextDesktop Simulated "/>
+            <ComboBoxItem Content="MinimizeAll Simulated"/>
+            <ComboBoxItem Content="LastDesktop Simulated"/>
+            <ComboBoxItem Content="Task Simulated"/>
+            <!--<ComboBoxItem Content="Last Desktop"/>
+            <ComboBoxItem Content="Last Window"/>
+            <ComboBoxItem Content="Show Tasks"/>-->
         </ComboBox>
-
-        <TextBlock Text="Bottom Button Action:" Grid.Row="1" VerticalAlignment="Center"/>
-        <ComboBox x:Name="BottomButtonAction" Grid.Row="1" Margin="150,0,0,0">
-            <!-- Populate with actions -->
-        </ComboBox>
-
-        <TextBlock Text="Left Button Action:" Grid.Row="2" VerticalAlignment="Center"/>
-        <ComboBox x:Name="LeftButtonAction" Grid.Row="2" Margin="150,0,0,0">
-            <!-- Populate with actions -->
-        </ComboBox>
-
-        <TextBlock Text="Right Button Action:" Grid.Row="3" VerticalAlignment="Center"/>
-        <ComboBox x:Name="RightButtonAction" Grid.Row="3" Margin="150,0,0,0">
-            <!-- Populate with actions -->
-        </ComboBox>
-
-        <Button Content="Save" Grid.Row="4" HorizontalAlignment="Right" Click="SaveButton_Click"/>
     </Grid>
 </Window>

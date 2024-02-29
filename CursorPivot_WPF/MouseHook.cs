@@ -17,7 +17,7 @@ namespace CursorPivot_WPF
         private int hMouseHook;
         private MouseMonitor mouseMonitor;
         private FloatingWindow fwindow;
-        private string ActionButton = "Button0";
+        private string ActionButton = "Button4";
 
         private bool fwindowShown = false;
         private bool mouseDown = false;
@@ -149,7 +149,7 @@ namespace CursorPivot_WPF
                     {
                         fwindow.PerformButtonAction(ActionButton);
                         Console.WriteLine($"mouse button up, action {ActionButton}");
-                        ActionButton = "Button0";
+                        ActionButton = "Button4";
                         ignoreNextEvent = false; // 新线程执行完毕，再重置标志位，防止循环创建线程
                     });
 

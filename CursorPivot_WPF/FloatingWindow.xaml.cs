@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,24 +45,24 @@ namespace CursorPivot_WPF
             this.WindowStyle = WindowStyle.None;
 
             // 初始化代理数组
-            MyActions[0] = ()=> {
+            MyActions[4] = ()=> {
                 MouseKeyboardSimulator.SimulateMiddleClick();
                 return; };
             //MyActions[1] = Button1Action;
             //MyActions[2] = Button2Action;
-            MyActions[3] = MouseKeyboardSimulator.Simulate_NextDesktop;
-            MyActions[3] = MouseKeyboardSimulator.Simulate_NextWindow;
+            MyActions[0] = MouseKeyboardSimulator.Simulate_NextDesktop;
+            MyActions[0] = MouseKeyboardSimulator.Simulate_NextWindow;
             //MyActions[4] = Button4Action;
             //MyActions[5] = Button5Action;
-            MyActions[6] = MouseKeyboardSimulator.Simulate_MinimizeAll;
+            MyActions[1] = MouseKeyboardSimulator.Simulate_MinimizeAll;
             //MyActions[7] = Button7Action;
             //MyActions[8] = Button8Action;
-            MyActions[9] = MouseKeyboardSimulator.Simulate_LastDesktop;
-            MyActions[9] = MouseKeyboardSimulator.Simulate_LastWindow;
+            MyActions[2] = MouseKeyboardSimulator.Simulate_LastDesktop;
+            MyActions[2] = MouseKeyboardSimulator.Simulate_LastWindow;
             //MyActions[10] = Button10Action;
             //MyActions[11] = Button11Action;
-            //MyActions[12] = MouseKeyboardSimulator.Simulate_Tasks;
-            MyActions[12] = Show_Settings;
+            MyActions[3] = MouseKeyboardSimulator.Simulate_Tasks;
+            //MyActions[12] = Show_Settings;
 
         }
 
@@ -74,13 +75,61 @@ namespace CursorPivot_WPF
                 App.mainWindow.Dispatcher.Invoke(() =>
                 {
                     // Here can safely access UI elements
-                    App.mainWindow.Show(); 
+                    App.mainWindow.Show(); ; 
                 });
             }
         }
 
 
+
         internal void PerformButtonAction(string buttonName)
+        {
+
+            if (buttonName == null) return;
+            // 从按钮名称中提取数字, 按钮名称格式为 "buttonX"
+            int index = 0;
+            try
+            {
+                if (App.mainWindow != null)
+                {
+                    // Use the Dispatcher to invoke the UI update on the UI thread
+                    App.mainWindow.Dispatcher.Invoke(() =>
+                    {
+                        // Here can safely access UI elements
+                        //index = (int)App.mainWindow.GetActionIndexFromButtonName(buttonName);
+                        if (App.mainWindow.GetActionIndexFromButtonName(buttonName) != null)
+                        {
+                            index = (int)App.mainWindow.GetActionIndexFromButtonName(buttonName);
+                            Console.WriteLine($"Action index for Button1 is {index}.");
+                            // 这里你可以根据获取的索引做进一步处理
+                        }
+                        else
+                        {
+                            InitButtonAction(buttonName);
+                            Console.WriteLine("Button not found or action index not set.");
+                        }
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine($"button name: {buttonName}");
+            }
+
+            // 检查索引有效性
+            if (index >= 0 && index < MyActions.Length && MyActions[index] != null)
+            {
+                MyActions[index].Invoke();
+                Console.WriteLine($"Action {index} invoded");
+            }
+            else
+            {
+                Console.WriteLine($"Action {index} for {buttonName} is not defined.");
+            }
+        }
+
+        internal void  InitButtonAction(string buttonName)
         {
             if (buttonName == null) return;
             // 从按钮名称中提取数字, 按钮名称格式为 "buttonX"
@@ -88,6 +137,17 @@ namespace CursorPivot_WPF
             try
             {
                 index = int.Parse(buttonName.Substring(6));
+                switch (index)
+                {
+                    case 3:
+                        index = 0; break;
+                    case 6:
+                        index = 1; break;
+                    case 9:
+                        index = 2; break;
+                    case 12:
+                        index = 3; break;
+                }
             }
             catch (Exception ex)
             {
